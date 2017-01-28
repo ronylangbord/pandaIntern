@@ -63,17 +63,14 @@ router.put('/:id', function (req, res, next) {
                 console.log('new user name has been updated');
                 res.send(user)
                 lock = false
-            } 
-//            else {
-//                lock = false;
-//                res.status(500).send(err)
-//            }
+            } else {
+                lock = false;
+            }
         });
 
     });
 
 });
-
 
 /* DELETE user by id. */
 router.delete('/:id', function (req, res, next) {

@@ -8,9 +8,11 @@ var users = require('./routes/users');
 var routes = require('./routes/index');
 var less = require('less');
 var db_init = require('./lib/init_db');
-var port = 8081;
-
 var mongoose = require('mongoose');
+
+var port = 8081;
+var app = express();
+
 
 var dbStringConnection = process.env.MONGODB_URI || 'localhost:27017/internTest';
 
@@ -22,7 +24,7 @@ mongoose.connect(dbStringConnection, function (err) {
     }
 });
 
-var app = express()
+
 
 process.on('uncaughtException', (err) => {
     console.error('#ERROR async error dump', err);
