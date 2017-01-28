@@ -1,7 +1,8 @@
 var express = require('express');
-var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/User.js');
+
+var router = express.Router();
 var lock = false;
 
 /* GET all users */
