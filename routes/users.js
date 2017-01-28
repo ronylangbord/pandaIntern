@@ -62,11 +62,11 @@ router.put('/:id', function (req, res, next) {
         user.save(function (err) {
             if (!err) {
                 console.log('new user name has been updated');
-                res.send(user)
-                lock = false
+                res.send(user);
             } else {
-                lock = false;
+                res.status(500).send(err);
             }
+            lock = false;
         });
 
     });
