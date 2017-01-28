@@ -2,12 +2,10 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var User = require('../models/User.js');
-var locks = require('locks');
-var mutex = locks.createMutex();
 var lock = false;
 
 /* GET all users */
-router.get('/all', function (req, res, next) {
+router.get('/', function (req, res, next) {
     User.find({}, function (err, users) {
         if (err) {
             return next(err);
@@ -57,22 +55,21 @@ router.put('/:id', function (req, res, next) {
     var value = req.body.value;
 
     User.findById(id, function (err, user) {
-        mutex.lock(function () {
-            //preventing from two users to update the same name
-            user.name = value;
-            user.save(function (err) {
-                if (!err) {
-                    console.log('new user name has been updated');
-                    res.send(user)
-                    lock = false
-                } else {
-                    lock = false;
-                    res.send(err)
-                }
-            });
 
-            mutex.unlock();
-        })
+        //preventing from two users to update the same name
+        user.name = value;
+        user.save(function (err) {
+            if (!err) {
+                console.log('new user name has been updated');
+                res.send(user)
+                lock = false
+            } 
+//            else {
+//                lock = false;
+//                res.status(500).send(err)
+//            }
+        });
+
     });
 
 });
