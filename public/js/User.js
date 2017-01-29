@@ -52,7 +52,7 @@ every user by opening a PUT request to the server
 User.prototype.update = function (ev) {
 
     var xhr = new XMLHttpRequest();
-    xhr.open('PUT', 'http://localhost:8081/users/' + this.args._id, true);
+    xhr.open('PUT', '/users/' + this.args._id, true);
     xhr.setRequestHeader("Content-type", "application/json");
     var myhtml = this.html;
 
