@@ -9,7 +9,7 @@ getUsers();
 function getUsers() {
 
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/users/', true);
+    xhr.open('GET', '/users', true);
     xhr.responseType = 'json';
 
     xhr.onload = function () {
